@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - run: |
-          gh issue --repo${{github.repository}}\
+          gh issue --repo ${{github.repository}}\
             create --title "Issue frm job id ${{github.job}}"\
             --body "${{github.actor}} triggered the creation of this issue. Github bot created it for him"
         env:
