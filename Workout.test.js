@@ -19,7 +19,7 @@ describe("createWorkout", () => {
     expect.hasAssertions();
     await createWorkout("Heimo Tulo");
     const result = await db.select("username").from("workouts");
-    expect(result).toEqual([{ username: "Heimo" }]);
+    expect(result).toEqual([{ username: "Heimo Tulo" }]);
   });
 
   test("create a workout for a missing username", async () => {
