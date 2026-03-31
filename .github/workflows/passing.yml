@@ -1,0 +1,23 @@
+name: Pass a value between jobs
+
+on: workflow_dispatch
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    outputs:
+      message: ${{ steps.set-value.outputs.text }}
+
+    steps:
+      - name: Set output value
+        id: set-value
+        run: echo "text=Hello from job1!" >> "$GITHUB_OUTPUT"
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+
+    steps:
+      - name: Print the value from job1
+        run: echo "Job1 said: ${{ needs.job1.outputs.message }}"
