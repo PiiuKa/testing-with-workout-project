@@ -7,17 +7,17 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      message: ${{ steps.set-value.outputs.msg }}
+      message: ${{ steps.set_value.outputs.out }}
 
     steps:
       - name: Set output value
-        id: set-value
-        run: echo "msg=Hello from job1!" >> "$GITHUB_OUTPUT"
+        id: set_value
+        run: echo "out=Hello_from_job1" >> $GITHUB_OUTPUT
 
   job2:
     runs-on: ubuntu-latest
     needs: job1
 
     steps:
-      - name: Print value from job1
+      - name: Print the value passed from job1
         run: echo "Job1 said: ${{ needs.job1.outputs.message }}"
